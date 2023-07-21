@@ -59,7 +59,6 @@ void merge(int arr[], int first, int mid, int last, long long& count_compare){
 	for (index = first; ++count_compare && index <= last; ++index)
 		arr[index] = tempArr[index];
 }
-
 void mergeSortDo(int arr[], int first, int last, long long& count_compare){
 	if (++count_compare && first < last) {
 		int mid = (first + last) / 2; // Index of midpoint
@@ -71,6 +70,25 @@ void mergeSortDo(int arr[], int first, int last, long long& count_compare){
 //mergeSort count comparison
 void mergeSort(int arr[], int n, long long& count_compare){
 	mergeSortDo(arr, 0, n - 1, count_compare);
+}
+
+void quickSortDo(int arr[], int first, int last, long long& count_compare){
+	int pivot = arr[(first + last) / 2];
+	int i = first, j = last;
+	do {
+		while (++count_compare && arr[i] < pivot) i++;
+		while (++count_compare && arr[j] > pivot) j--;
+		if (++count_compare && i <= j) {
+			swap(arr[i], arr[j]);
+			i++; j--;
+		}
+	} while (++count_compare && i <= j);
+	if (++count_compare && first < j) quickSortDo(arr, first, j, count_compare);
+	if (++count_compare && i < last) quickSortDo(arr, i, last, count_compare);
+}
+//quickSort count comparison
+void quickSort(int arr[], int n, long long& count_compare){
+	quickSortDo(arr, 0, n - 1, count_compare);
 }
 
 void heapRebuild_noComp(int start, int arr[], int n){
@@ -89,7 +107,7 @@ void heapRebuild_noComp(int start, int arr[], int n){
 		heapRebuild_noComp(largerChild, arr, n); // Recursion at that child
 	}
 }
-
+//heapSort time
 void heapSort_noComp(int arr[], int n, double& time){
 	clock_t start, end;
 	start = double(clock());
@@ -130,7 +148,6 @@ void merge_noComp(int arr[], int first, int mid, int last){
 	for (index = first; index <= last; ++index)
 		arr[index] = tempArr[index];
 }
-
 void mergeSortDo_noComp(int arr[], int first, int last){
 	if (first < last) {
 		int mid = (first + last) / 2; // Index of midpoint
@@ -139,12 +156,37 @@ void mergeSortDo_noComp(int arr[], int first, int last){
 			merge_noComp(arr, first, mid, last); // Merge the two halves
 		}
 }
-
+//mergeSort time
 void mergeSort_noComp(int arr[], int n, double& time){
 	clock_t start, end;
 	start = double(clock());
 	
 	mergeSortDo_noComp(arr, 0, n - 1);
+	
+	end = double(clock());
+	time = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+}
+
+void quickSortDo_noComp(int arr[], int first, int last){
+	int pivot = arr[(first + last) / 2];
+	int i = first, j = last;
+	do {
+		while (arr[i] < pivot) i++;
+		while (arr[j] > pivot) j--;
+		if (i <= j) {
+			swap(arr[i], arr[j]);
+			i++; j--;
+		}
+	} while (i <= j);
+	if (first < j) quickSortDo_noComp(arr, first, j);
+	if (i < last) quickSortDo_noComp(arr, i, last);
+}
+//quickSort time
+void quickSort_noComp(int arr[], int n, double& time){
+	clock_t start, end;
+	start = double(clock());
+	
+	quickSortDo_noComp(arr, 0, n - 1);
 	
 	end = double(clock());
 	time = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
