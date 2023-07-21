@@ -236,6 +236,7 @@ void radixSort(int arr[], int n, long long &count_compare)
 				arr[idx++] = tempArr[j][k];
 	}
 }
+// Ref: Nguyen Ngoc Thao
 
 void radixSort_noComp(int arr[], int n, double &time_use)
 {
@@ -285,12 +286,14 @@ void radixSort_noComp(int arr[], int n, double &time_use)
 	end = clock();
 	time_use = (double)(end - start) / CLOCKS_PER_SEC;
 }
+// Ref: Nguyen Ngoc Thao
 
 void shakerSort(int arr[], int n, long long &count_compare)
 {
     int left = 1, right = n - 1, k = n - 1;
     do
     {
+		// sort from right to left to guarantee that the small elements are sorted at the top of the array.
         for (int j = right; j >= left; --j, ++count_compare)
         {
             ++count_compare;
@@ -300,8 +303,9 @@ void shakerSort(int arr[], int n, long long &count_compare)
                 k = j;
             }
         }
-        left = k + 1;
-        for (int j = left; j <= right; ++j, ++count_compare)
+        left = k + 1; // because elements from the beginning of the array to the "k" were sorted so we need to sort from the "k + 1" to the end of the array.
+		// sort from left to right to guarantee that the large elements are sorted at the end of the array.
+		for (int j = left; j <= right; ++j, ++count_compare)
         {
             ++count_compare;
             if (arr[j - 1] > arr[j])
@@ -310,10 +314,11 @@ void shakerSort(int arr[], int n, long long &count_compare)
                 k = j;
             }
         }
-        right = k - 1;
-    } while (++ count_compare && left <= right);
+        right = k - 1; // because elements from "k" to the end of the array were sorted so we need to sort from the "k - 1" to the beginning of the array.
+    } while (++ count_compare && left <= right);	// continue iterating until the left equals to the right.
     
 }
+// Ref: Nguyen Ngoc Thao
 
 void shakerSort_noComp(int arr[], int n, double &time_use)
 {
@@ -322,6 +327,7 @@ void shakerSort_noComp(int arr[], int n, double &time_use)
     int left = 1, right = n - 1, k = n - 1;
     do
     {
+		// sort from right to left to guarantee that the small elements are sorted at the top of the array.
         for (int j = right; j >= left; --j)
         {
             if (arr[j - 1] > arr[j])
@@ -330,7 +336,8 @@ void shakerSort_noComp(int arr[], int n, double &time_use)
                 k = j;
             }
         }
-        left = k + 1;
+        left = k + 1; // because elements from the beginning of the array to the "k" were sorted so we need to sort from the "k + 1" to the end of the array.
+		// sort from left to right to guarantee that the large elements are sorted at the end of the array.
         for (int j = left; j <= right; ++j)
         {
             if (arr[j - 1] > arr[j])
@@ -339,41 +346,65 @@ void shakerSort_noComp(int arr[], int n, double &time_use)
                 k = j;
             }
         }
-        right = k - 1;
-    } while (left <= right);  
+        right = k - 1; // because elements from "k" to the end of the array were sorted so we need to sort from the "k - 1" to the beginning of the array.
+    } while (left <= right);  // continue iterating until the left equals to the right.
 	end = clock();
 	time_use = (double)(end - start) / CLOCKS_PER_SEC; 
 }
-
+// Ref: Nguyen Ngoc Thao
 
 void shellSort(int arr[], int n, long long &count_compare)
 {
 	int gap, i, j, temp;
-	for(gap = n / 2; gap > 0; gap /= 2, ++count_compare){
-		for(i = gap; i < n; i++, ++count_compare){
+	// Start with a big gap, then reduce the gap
+	for(gap = n / 2; gap > 0; gap /= 2, ++count_compare)
+	{
+		// Do a gapped insertion sort for this gap size.
+        // The first gap elements arr[0..gap-1] are already in gapped order
+        // keep adding one more element until the entire array is
+        // gap sorted 
+		for(i = gap; i < n; i++, ++count_compare)
+		{
+			// add arr[i] to the elements that have been gap sorted
+            // save arr[i] in temp and make a hole at position i
 			temp = arr[i];
+			// shift earlier gap-sorted elements up until the correct 
+            // location for arr[i] is found
 			for(j = i; j >= gap && arr[j - gap] > temp; j -= gap, count_compare += 2){
 				arr[j] = arr[j - gap];				
 			}
+			//  put temp (the original arr[i]) in its correct location
 			arr[j] = temp;
 		}
     }
 }
+// Ref: https://codelearn.io/learning/data-structure-and-algorithms/856660
+// Ref: https://www.geeksforgeeks.org/shellsort/
 
 void shellSort_noComp(int arr[], int n, double &time_use)
 {
 	clock_t start, end;
 	start = clock();
     int gap, i, j, temp;
+	// Start with a big gap, then reduce the gap
     for (gap = n / 2; gap > 0; gap /= 2)
     {
+		// Do a gapped insertion sort for this gap size.
+        // The first gap elements arr[0..gap-1] are already in gapped order
+        // keep adding one more element until the entire array is
+        // gap sorted 
         for (i = gap; i < n; i++)
         {
+			// add arr[i] to the elements that have been gap sorted
+            // save arr[i] in temp and make a hole at position i
             temp = arr[i];
+			// shift earlier gap-sorted elements up until the correct 
+            // location for arr[i] is found
             for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
             {
                 arr[j] = arr[j - gap];
             }
+			//  put temp (the original arr[i]) in its correct location
             arr[j] = temp;
         }
     }
@@ -381,3 +412,4 @@ void shellSort_noComp(int arr[], int n, double &time_use)
 	time_use = (double)(end - start) / CLOCKS_PER_SEC;
 }
 // Ref: https://codelearn.io/learning/data-structure-and-algorithms/856660
+// Ref: https://www.geeksforgeeks.org/shellsort/
