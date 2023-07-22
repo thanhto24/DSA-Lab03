@@ -1,0 +1,34 @@
+Kiểm tra xem đang là algorithm mode hay comparte mode
+Algo mode thì làm cmd 1 2 3
+Comp mode thì làm cmd 4 5
+
+cmd1: [Execution file] -a [Algorithm] [Given input] [Output parameter(s)]
+--> Cho đọc file (given input) để lưu mảng trong file vào array
+--> Sắp xếp mảng array theo thuật tonas (algorithm)
+--> Kiểm tra thời gian chạy (nếu out para là -time)/ số comparisons (nếu out para là -comp) hoặc cả hai (nếu out para là -both)
+--> Lưu mảng đã sắp xếp vào file output.txt
+
+cmd2: [Execution file] -a [Algorithm] [Input size] [Input order] [Output parameter(s)]
+--> Sử dụng các hàm trong file DataGenerator.cpp mà thầy cung cấp để tạo mảng theo (input-order) có kích thước là (input size)
+--> Lưu lại mảng khởi tạo vào file input.txt
+--> Sắp xếp mảng array theo thuật tonas (algorithm)
+--> Kiểm tra thời gian chạy (nếu out para là -time)/ số comparisons (nếu out para là -comp) hoặc cả hai (nếu out para là -both)
+--> Lưu mảng đã sắp xếp vào file output.txt
+
+cmd3: [Execution file] -a [Algorithm] [Input size] [Output parameter(s)]
+--> Sử dụng các hàm trong file DataGenerator.cpp mà thầy cung cấp để tạo mảng có kích thước là (input size)
+--> Lần lượt khởi tạo mảng với (input order) là random, nearly sorted, szorted, reversed và sẽ lưu mảng khởi tạo vào các file lần lượt là
+input_1.txt, input_2.txt, input_3.txt, input_4.txt
+--> Mỗi lần khởi tạo mảng thì sắp xếp lại mảng, kiểm tra thời gian chạy (nếu out para là -time)/ số comparisons (nếu out para là -comp) hoặc cả hai (nếu out para là -both)
+
+cmd4: [Execution file] -c [Algorithm 1] [Algorithm 2] [Given input]
+--> Cho đọc file (given input) để lưu mảng trong file vào array
+--> Sắp xếp mảng array theo thuật toán (algorithm 1) và (algorithm 2)
+--> Kiểm tra thời gian chạy và số comparisons của cả 2 thuật toán
+
+cmd5: : [Execution file] -c [Algorithm 1] [Algorithm 2] [Input size] [Input order]
+--> Sử dụng các hàm trong file DataGenerator.cpp mà thầy cung cấp để tạo mảng theo (input-order) có kích thước là (input size)
+--> Lưu lại mảng khởi tạo vào file input.txt
+--> Sắp xếp mảng array theo thuật tonas (algorithm 1) và (algorithm 2)
+--> Kiểm tra thời gian chạy và số comparisons của cả hai thuật toán
+--> Lưu mảng đã sắp xếp vào file output.txt

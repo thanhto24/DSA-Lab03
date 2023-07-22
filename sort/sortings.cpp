@@ -1,6 +1,37 @@
 #include "DataGenerator.cpp"
+#include <cstring>
+#include <sstream>
 
 // TÔ QUỐC THANH_22127388: Selection Sort && Insertion Sort && Bubble Sort
+void selectionSortVerComp(int arr[], int n, long long &count_compare)
+{
+
+}
+
+void selectionSortVerTime(int arr[], int n, double &time_use)
+{
+
+}
+
+void insertionSortVerComp(int arr[], int n, long long &count_compare)
+{
+
+}
+
+void insertionSortVerTime(int arr[], int n, double &time_use)
+{
+
+}
+
+void bubbleSortVerComp(int arr[], int n, long long &count_compare)
+{
+
+}
+
+void bubbleSortVerTime(int arr[], int n, double &time_use)
+{
+
+}
 
 // NGÔ VĂN KHẢI_22127174: Heap Sort && Merge Sort && Quick Sort
 // Heap Sort: Counting the number of comparisons
@@ -68,11 +99,11 @@ void heapSortVerTime(int arr[], int n, double& time_use){
 	}
 	
 	end = double(clock());
-	tim_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
 }
 
 // Merge Sort: Counting the number of comparisons
-void mergeSortRebulidVerComp(int arr[], int first, int mid, int last, long long& count_compare){
+void mergeSortRebuildVerComp(int arr[], int first, int mid, int last, long long& count_compare){
 	// Initialize the local indices to indicate the subarrays
 	int first1 = first, last1 = mid; // The first subarray
 	int first2 = mid + 1, last2 = last; // The second subarray
@@ -197,7 +228,7 @@ void quickSortVerTime(int arr[], int n, double& time){
 
 // THÁI HUYỄN TÙNG_22127441: Radix Sort && Shaker Sort && Shell Sort
 // Radix Sort: Counting the number of comparisons
-void radixSorVerComp(int arr[], int n, long long &count_compare)
+void radixSortVerComp(int arr[], int n, long long &count_compare)
 {
 	// find max value of the array
 	int maxValue = -1;
