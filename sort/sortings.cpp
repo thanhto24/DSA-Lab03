@@ -1,8 +1,8 @@
-#include "DataGenerator.cpp"
-#include <cstring>
-#include <sstream>
+#include "header.h"
 
+// ----------------------------------------------------------------
 // TÔ QUỐC THANH_22127388: Selection Sort && Insertion Sort && Bubble Sort
+// Selection Sort: Counting the number of comparisons
 void selectionSortVerComp(int arr[], int n, long long &count_compare)
 {
 	for (int i = 0; ++count_compare && i < n - 1; i++)
@@ -15,6 +15,7 @@ void selectionSortVerComp(int arr[], int n, long long &count_compare)
 	}
 }
 
+// Selection Sort: Calculating the time of algorithm
 void selectionSortVerTime(int arr[], int n, double &time_use)
 {
 	clock_t start, end;
@@ -31,6 +32,7 @@ void selectionSortVerTime(int arr[], int n, double &time_use)
 	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
 }
 
+// Insertion Sort: Counting the number of comparisons
 void insertionSortVerComp(int arr[], int n, long long &count_compare)
 {
 	for (int i = 1; ++count_compare && i < n; i++)
@@ -46,6 +48,7 @@ void insertionSortVerComp(int arr[], int n, long long &count_compare)
 	}
 }
 
+// Insertion Sort: Calculating the time of algorithm
 void insertionSortVerTime(int arr[], int n, double &time_use)
 {
 	clock_t start, end;
@@ -65,6 +68,7 @@ void insertionSortVerTime(int arr[], int n, double &time_use)
 	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
 }
 
+// Bubble Sort: Counting thr number of comparisons
 void bubbleSortVerComp(int arr[], int n, long long &count_compare)
 {
 	for (int i = 1; ++count_compare && i < n; i++)
@@ -73,6 +77,7 @@ void bubbleSortVerComp(int arr[], int n, long long &count_compare)
 				swap(arr[j], arr[j - 1]);
 }
 
+// Bubble Sort: Calculating the time of algorithm
 void bubbleSortVerTime(int arr[], int n, double &time_use)
 {
 	clock_t start, end;
@@ -85,6 +90,7 @@ void bubbleSortVerTime(int arr[], int n, double &time_use)
 	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
 }
 
+// ----------------------------------------------------------------
 // NGÔ VĂN KHẢI_22127174: Heap Sort && Merge Sort && Quick Sort
 // Heap Sort: Counting the number of comparisons
 void heapRebuildVerComp(int start, int arr[], int n, long long &count_compare)
@@ -318,6 +324,7 @@ void quickSortVerTime(int arr[], int n, double &time)
 	time = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
 }
 
+// ----------------------------------------------------------------
 // THÁI HUYỄN TÙNG_22127441: Radix Sort && Shaker Sort && Shell Sort
 // Radix Sort: Counting the number of comparisons
 void radixSortVerComp(int arr[], int n, long long &count_compare)
@@ -538,6 +545,7 @@ void shellSortVerTime(int arr[], int n, double &time_use)
 	time_use = (double)(end - start) / CLOCKS_PER_SEC;
 }
 
+// ----------------------------------------------------------------
 // LÊ PHƯỚC PHÁT_22127322: Counting Sort && Flash Sort
 // Counting Sort: Counting the number of comparisons
 void countingSortVerComp(int arr[], int n, long long &count_compare)
@@ -728,3 +736,4 @@ void flashSortVerTime(int arr[], int n, double &time_use)
 	end = double(clock());
 	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
 }
+//----------------------------------------------------------------
