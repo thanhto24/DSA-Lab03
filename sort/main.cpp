@@ -615,7 +615,7 @@ void command_4(int argc, char **argv)
     cpyArr(a, b, n);
     timeFunctions[index2](a, n, time_use2);
     cpyArr(a, b, n);
-    cout << "Runing time: " << time_use1 << " | " << time_use2 << endl;
+    cout << "Runing time: " << time_use1 << "(ms) | " << time_use2 << "(ms)" << endl;
 
     compFunctions[index1](a, n, count_compare1);
     cpyArr(a, b, n);
@@ -685,7 +685,7 @@ void command_5(int argc, char **argv)
     cpyArr(a, b, n);
     timeFunctions[index2](a, n, time_use2);
     cpyArr(a, b, n);
-    cout << "Runing time: " << time_use1 << " | " << time_use2 << endl;
+    cout << "Runing time: " << time_use1 << "(ms) | " << time_use2 << "(ms)" << endl;
 
     compFunctions[index1](a, n, count_compare1);
     cpyArr(a, b, n);
@@ -693,7 +693,19 @@ void command_5(int argc, char **argv)
     cpyArr(a, b, n);
 
     cout << "Comparisions: " << count_compare1 << " | " << count_compare2 << endl;
-
+    ofstream out("input.txt");
+    if (out.fail())
+    {
+        cout << "Error opening file" << endl;
+        out.close();
+    }
+    else
+    {
+        out << n << endl;
+        for (int i = 0; i < n; i++)
+            out << a[i] << " ";
+        out.close();
+    }
     delete[] a;
     delete[] b;
 }
