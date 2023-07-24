@@ -575,7 +575,57 @@ void command_4(int argc, char **argv)
     fin.close();
     int *b = new int[n];
     cpyArr(b, a, n);
-    cout << "Algorithm: " << argv[2] << " | " << argv[3] << endl;
+    cout << "Algorithm: ";
+    if (sortFilter(argv[2]) == 0)
+        cout << "Selection Sort";
+    else if (sortFilter(argv[2]) == 1)
+        cout << "Insertion Sort";
+    else if (sortFilter(argv[2]) == 2)
+        cout << "Bubble Sort";
+    else if (sortFilter(argv[2]) == 3)
+        cout << "Shaker Sort";
+    else if (sortFilter(argv[2]) == 4)
+        cout << "Shell Sort";
+    else if (sortFilter(argv[2]) == 5)
+        cout << "Heap Sort";
+    else if (sortFilter(argv[2]) == 6)
+    cout << "Merge Sort";
+    else if (sortFilter(argv[2]) == 7)
+    cout << "Quick Sort";
+    else if (sortFilter(argv[2]) == 8)
+        cout << "Counting Sort";
+    else if (sortFilter(argv[2]) == 9)
+        cout << "Radix Sort";
+    else if (sortFilter(argv[2]) == 10)
+        cout << "Flash Sort";
+    else
+        cout << argv[2];
+    cout << " | ";
+    if (sortFilter(argv[3]) == 0)
+        cout << "Selection Sort" << endl;
+    else if (sortFilter(argv[3]) == 1)
+        cout << "Insertion Sort" << endl;
+    else if (sortFilter(argv[3]) == 2)
+        cout << "Bubble Sort" << endl;
+    else if (sortFilter(argv[3]) == 3)
+        cout << "Shaker Sort" << endl;
+    else if (sortFilter(argv[3]) == 4)
+        cout << "Shell Sort";
+    else if (sortFilter(argv[3]) == 5)
+        cout << "Heap Sort" << endl;
+    else if (sortFilter(argv[3]) == 6)
+    cout << "Merge Sort" << endl;
+    else if (sortFilter(argv[3]) == 7)
+    cout << "Quick Sort" << endl;
+    else if (sortFilter(argv[3]) == 8)
+        cout << "Counting Sort" << endl;
+    else if (sortFilter(argv[3]) == 9)
+        cout << "Radix Sort" << endl;
+    else if (sortFilter(argv[3]) == 10)
+        cout << "Flash Sort" << endl;
+    else
+        cout << argv[3] << endl;
+
     cout << "Input file: " << argv[4] << endl;
     cout << "Input size: " << n << endl;
     cout << "---------------------------" << endl;
@@ -637,7 +687,57 @@ void command_5(int argc, char **argv)
     GenerateData(a, n, orderFilter(argv[5]));
     int *b = new int[n];
     cpyArr(b, a, n);
-    cout << "Algorithm: " << argv[2] << " | " << argv[3] << endl;
+    cout << "Algorithm: ";
+    if (sortFilter(argv[2]) == 0)
+        cout << "Selection Sort";
+    else if (sortFilter(argv[2]) == 1)
+        cout << "Insertion Sort";
+    else if (sortFilter(argv[2]) == 2)
+        cout << "Bubble Sort";
+    else if (sortFilter(argv[2]) == 3)
+        cout << "Shaker Sort";
+    else if (sortFilter(argv[2]) == 4)
+        cout << "Shell Sort";
+    else if (sortFilter(argv[2]) == 5)
+        cout << "Heap Sort";
+    else if (sortFilter(argv[2]) == 6)
+    cout << "Merge Sort";
+    else if (sortFilter(argv[2]) == 7)
+    cout << "Quick Sort";
+    else if (sortFilter(argv[2]) == 8)
+        cout << "Counting Sort";
+    else if (sortFilter(argv[2]) == 9)
+        cout << "Radix Sort";
+    else if (sortFilter(argv[2]) == 10)
+        cout << "Flash Sort";
+    else
+        cout << argv[2];
+    cout << " | ";
+    if (sortFilter(argv[3]) == 0)
+        cout << "Selection Sort" << endl;
+    else if (sortFilter(argv[3]) == 1)
+        cout << "Insertion Sort" << endl;
+    else if (sortFilter(argv[3]) == 2)
+        cout << "Bubble Sort" << endl;
+    else if (sortFilter(argv[3]) == 3)
+        cout << "Shaker Sort" << endl;
+    else if (sortFilter(argv[3]) == 4)
+        cout << "Shell Sort";
+    else if (sortFilter(argv[3]) == 5)
+        cout << "Heap Sort" << endl;
+    else if (sortFilter(argv[3]) == 6)
+    cout << "Merge Sort" << endl;
+    else if (sortFilter(argv[3]) == 7)
+    cout << "Quick Sort" << endl;
+    else if (sortFilter(argv[3]) == 8)
+        cout << "Counting Sort" << endl;
+    else if (sortFilter(argv[3]) == 9)
+        cout << "Radix Sort" << endl;
+    else if (sortFilter(argv[3]) == 10)
+        cout << "Flash Sort" << endl;
+    else
+        cout << argv[3] << endl;
+
     cout << "Input size: " << argv[4] << endl;
     cout << "Input order: ";
     if (orderFilter(argv[5]) == 0)
@@ -722,7 +822,7 @@ int main(int argc, char **argv)
         else if (atoi(argv[3]) > 0)
             command_3(argc, argv);
         else
-            cout << "Wrong input!";
+            cout << "Wrong input!" << endl;
 
     }
     else if (strcmp(argv[1], "-c") == 0)
@@ -733,11 +833,11 @@ int main(int argc, char **argv)
         else if (argc == 6)
             command_5(argc, argv);
         else
-            cout << "Wrong input!";
+            cout << "Wrong input!" << endl;
     }
     else
     {
-        cout << "Wrong input!";
+        cout << "Wrong input!" << endl;
     }
 
     return 0;
