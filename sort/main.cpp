@@ -103,6 +103,14 @@ bool checkError(int index, int type)
     return true;
 }
 
+bool isNum(char s[])
+{
+    for (int i = 0; i < strlen(s); i++)
+        if (s[i] < '0' || s[i] > '9')
+            return false;
+    return true;
+}
+
 void command_1(int argc, char **argv, sortWithComp compFunctions[], sortWithTime timeFunctions[])
 {
     int nums = 0;
@@ -193,7 +201,6 @@ void command_1(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
 
 void command_2(int argc, char **argv, sortWithComp compFunctions[], sortWithTime timeFunctions[])
 {
-
     int nums = 0;
     if (!strcmp(argv[1], "-a"))
     {
@@ -335,7 +342,11 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 else if (!strcmp(argv[4], "-time"))
                     cout << "Running time (if required): " << time_use << " (s)" << endl;
-
+                else
+                {
+                    cout << "Wrong input!";
+                    return;
+                }
                 ofstream ofs_1("input_1.txt");
                 if (ofs_1.fail())
                 {
@@ -368,7 +379,11 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 else if (!strcmp(argv[4], "-time"))
                     cout << "Running time (if required): " << time_use << " (s)" << endl;
-
+                else
+                {
+                    cout << "Wrong input!";
+                    return;
+                }
                 ofstream ofs_2("input_2.txt");
                 if (ofs_2.fail())
                 {
@@ -401,7 +416,11 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 else if (!strcmp(argv[4], "-time"))
                     cout << "Running time (if required): " << time_use << " (s)" << endl;
-
+                else
+                {
+                    cout << "Wrong input!";
+                    return;
+                }
                 ofstream ofs_3("input_3.txt");
                 if (ofs_3.fail())
                 {
@@ -434,7 +453,11 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 else if (!strcmp(argv[4], "-time"))
                     cout << "Running time (if required): " << time_use << " (s)" << endl;
-
+                else
+                {
+                    cout << "Wrong input!";
+                    return;
+                }
                 ofstream ofs_4("input_4.txt");
                 if (ofs_4.fail())
                 {
@@ -598,12 +621,15 @@ int main(int argc, char **argv)
         };
     if (strcmp(argv[1], "-a") == 0)
     {
-        if (strcmp(argv[4], "-both") == 0 || strcmp(argv[4], "-time") == 0 || strcmp(argv[4], "-time") == 0)
-            command_1(argc, argv, compFunctions, timeFunctions);
-        else if ((strcmp(argv[4], "-rand") == 0) || (strcmp(argv[4], "-rev") == 0) || (strcmp(argv[4], "-nsorted") == 0) || (strcmp(argv[4], "-sorted") == 0))
+        if (argc == 5 && ((strcmp(argv[4], "-time") == 0) || (strcmp(argv[4], "-comp") == 0) || (strcmp(argv[4], "-both") == 0)))
+        {
+            if (!isNum(argv[3]))
+                command_1(argc, argv, compFunctions, timeFunctions);
+            else
+                command_3(argc, argv, compFunctions, timeFunctions);
+        }
+        else if (argc == 6 && (strcmp(argv[4], "-rand") == 0) || (strcmp(argv[4], "-rev") == 0) || (strcmp(argv[4], "-nsorted") == 0) || (strcmp(argv[4], "-sorted") == 0))
             command_2(argc, argv, compFunctions, timeFunctions);
-        else if (atoi(argv[3]) > 0)
-            command_3(argc, argv, compFunctions, timeFunctions);
         else
             cout << "Wrong input!" << endl;
     }
