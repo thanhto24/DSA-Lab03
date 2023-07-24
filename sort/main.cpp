@@ -159,7 +159,7 @@ void command_1(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
             if (!strcmp(argv[4], "-both"))
             {
                 cout << "---------------------------" << endl;
-                cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                cout << "Running time (if required): " << time_use << " (s)" << endl;
                 cout << "Comparisons  (if required): " << count_compare << endl;
             }
             else if (!strcmp(argv[4], "-comp"))
@@ -170,7 +170,7 @@ void command_1(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
             else if (!strcmp(argv[4], "-time"))
             {
                 cout << "---------------------------" << endl;
-                cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                cout << "Running time (if required): " << time_use << " (s)" << endl;
             }
             // Write file to "output.txt"
             ofstream out("output.txt");
@@ -243,7 +243,7 @@ void command_2(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                 if (!strcmp(argv[5], "-both"))
                 {
                     cout << "---------------------------" << endl;
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 }
                 else if (!strcmp(argv[5], "-comp"))
@@ -254,7 +254,7 @@ void command_2(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                 else if (!strcmp(argv[5], "-time"))
                 {
                     cout << "---------------------------" << endl;
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
                 }
                 // Write file to "output.txt"
                 ofstream out("output2.txt");
@@ -302,7 +302,6 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                     cout << "Error: input size must be a positive number!";
                     return;
                 }
-
             }
             if (i == 4)
             {
@@ -329,13 +328,13 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
 
                 if (!strcmp(argv[4], "-both"))
                 {
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 }
                 else if (!strcmp(argv[4], "-comp"))
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 else if (!strcmp(argv[4], "-time"))
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
 
                 ofstream ofs_1("input_1.txt");
                 if (ofs_1.fail())
@@ -362,13 +361,13 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
 
                 if (!strcmp(argv[4], "-both"))
                 {
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 }
                 else if (!strcmp(argv[4], "-comp"))
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 else if (!strcmp(argv[4], "-time"))
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
 
                 ofstream ofs_2("input_2.txt");
                 if (ofs_2.fail())
@@ -395,13 +394,13 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
 
                 if (!strcmp(argv[4], "-both"))
                 {
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 }
                 else if (!strcmp(argv[4], "-comp"))
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 else if (!strcmp(argv[4], "-time"))
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
 
                 ofstream ofs_3("input_3.txt");
                 if (ofs_3.fail())
@@ -428,13 +427,13 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
 
                 if (!strcmp(argv[4], "-both"))
                 {
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 }
                 else if (!strcmp(argv[4], "-comp"))
                     cout << "Comparisons  (if required): " << count_compare << endl;
                 else if (!strcmp(argv[4], "-time"))
-                    cout << "Running time (if required): " << time_use << " (ms)" << endl;
+                    cout << "Running time (if required): " << time_use << " (s)" << endl;
 
                 ofstream ofs_4("input_4.txt");
                 if (ofs_4.fail())
@@ -496,7 +495,7 @@ void command_4(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
     cpyArr(a, b, n);
     timeFunctions[index2](a, n, time_use2);
     cpyArr(a, b, n);
-    cout << "Runing time: " << time_use1 << "(ms) | " << time_use2 << "(ms)" << endl;
+    cout << "Runing time: " << time_use1 << "(s) | " << time_use2 << "(s)" << endl;
 
     compFunctions[index1](a, n, count_compare1);
     cpyArr(a, b, n);
@@ -542,7 +541,7 @@ void command_5(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
     cpyArr(a, b, n);
     timeFunctions[index2](a, n, time_use2);
     cpyArr(a, b, n);
-    cout << "Runing time: " << time_use1 << "(ms) | " << time_use2 << "(ms)" << endl;
+    cout << "Runing time: " << time_use1 << "(s) | " << time_use2 << "(s)" << endl;
 
     compFunctions[index1](a, n, count_compare1);
     cpyArr(a, b, n);
