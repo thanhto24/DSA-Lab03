@@ -365,7 +365,8 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                 cout << "---------------------------" << endl;
                 dataType = 3;
                 GenerateData(arr_2, nums, dataType);
-
+                count_compare = 0;
+                time_use = 0;
                 if (!strcmp(argv[4], "-both") || !strcmp(argv[4], "-comp"))
                     compFunctions[index](arr_2, nums, count_compare);
                 timeFunctions[index](arr_2, nums, time_use);
@@ -402,7 +403,8 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                 cout << "---------------------------" << endl;
                 dataType = 1;
                 GenerateData(arr_3, nums, dataType);
-
+                count_compare = 0;
+                time_use = 0;
                 if (!strcmp(argv[4], "-both") || !strcmp(argv[4], "-comp"))
                     compFunctions[index](arr_3, nums, count_compare);
                 timeFunctions[index](arr_3, nums, time_use);
@@ -439,7 +441,8 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
                 cout << "---------------------------" << endl;
                 dataType = 2;
                 GenerateData(arr_4, nums, dataType);
-
+                count_compare = 0;
+                time_use = 0;
                 if (!strcmp(argv[4], "-both") || !strcmp(argv[4], "-comp"))
                     compFunctions[index](arr_4, nums, count_compare);
                 timeFunctions[index](arr_4, nums, time_use);
