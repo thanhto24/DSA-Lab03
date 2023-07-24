@@ -30,6 +30,34 @@ int sortFilter(char *name)
     return -1;
 }
 
+void printNameSort(int index)
+{
+    if (index == 0)
+        cout << "Selection Sort";
+    else if (index == 1)
+        cout << "Insertion Sort";
+    else if (index == 2)
+        cout << "Bubble Sort";
+    else if (index == 3)
+        cout << "Shaker Sort";
+    else if (index == 4)
+        cout << "Shell Sort";
+    else if (index == 5)
+        cout << "Heap Sort";
+    else if (index == 6)
+        cout << "Merge Sort";
+    else if (index == 7)
+        cout << "Quick Sort";
+    else if (index == 8)
+        cout << "Counting Sort";
+    else if (index == 9)
+        cout << "Radix Sort";
+    else if (index == 10)
+        cout << "Flash Sort";
+    else
+        cout << "Unknown Sorting Algorithm!";
+}
+
 int orderFilter(char *str)
 {
     if (!strcmp(str, "-rand"))
@@ -43,13 +71,39 @@ int orderFilter(char *str)
     return -1;
 }
 
+void printTypeOrder(int index)
+{
+    cout << "Input order: ";
+    if (index == 0)
+        cout << "Randomize" << endl;
+    else if (index == 1)
+        cout << "Sorted" << endl;
+    else if (index == 2)
+        cout << "Reversed" << endl;
+    else if (index == 3)
+        cout << "Nearly Sorted" << endl;
+}
+
 void cpyArr(int a[], int b[], int n)
 {
     for (int i = 0; i < n; i++)
         a[i] = b[i];
 }
 
-void command_1(int argc, char **argv)
+bool checkError(int index, int type)
+{
+    if (index == -1)
+    {
+        if (type == 1)
+            cout << "Error: Unknown sort type!\n";
+        else
+            cout << "Error: unknown data type!\n";
+        return false;
+    }
+    return true;
+}
+
+void command_1(int argc, char **argv, sortWithComp compFunctions[], sortWithTime timeFunctions[])
 {
     int nums = 0;
     int *arr = NULL;
@@ -59,30 +113,8 @@ void command_1(int argc, char **argv)
         {
             cout << "ALGORITHM MODE: " << endl;
             cout << "Algorithm : ";
-            if (sortFilter(argv[i]) == 0)
-                cout << "Selection Sort" << endl;
-            else if (sortFilter(argv[i]) == 1)
-                cout << "Insertion Sort" << endl;
-            else if (sortFilter(argv[i]) == 2)
-                cout << "Bubble Sort" << endl;
-            else if (sortFilter(argv[i]) == 3)
-                cout << "Shaker Sort" << endl;
-            else if (sortFilter(argv[i]) == 4)
-                cout << "Shell Sort" << endl;
-            else if (sortFilter(argv[i]) == 5)
-                cout << "Heap Sort" << endl;
-            else if (sortFilter(argv[i]) == 6)
-                cout << "Merge Sort" << endl;
-            else if (sortFilter(argv[i]) == 7)
-                cout << "Quick Sort" << endl;
-            else if (sortFilter(argv[i]) == 8)
-                cout << "Counting Sort" << endl;
-            else if (sortFilter(argv[i]) == 9)
-                cout << "Radix Sort" << endl;
-            else if (sortFilter(argv[i]) == 10)
-                cout << "Flash Sort" << endl;
-            else
-                cout << argv[i] << endl;
+            printNameSort(sortFilter(argv[i]));
+            cout << endl;
         }
         if (i == 3)
         {
@@ -96,6 +128,12 @@ void command_1(int argc, char **argv)
             else
             {
                 ifs >> nums;
+                if (nums <= 0)
+                {
+                    cout << "Error: input size must be a positive number!";
+                    ifs.close();
+                    return;
+                }
                 arr = new int[nums];
                 int index = 0;
                 while (!ifs.eof())
@@ -108,42 +146,10 @@ void command_1(int argc, char **argv)
             long long count_compare = 0;
             double time_use = 0;
 
-            // Array of functions
-            sortWithComp compFunctions[] =
-                {
-                    selectionSortVerComp,
-                    insertionSortVerComp,
-                    bubbleSortVerComp,
-                    heapSortVerComp,
-                    mergeSortVerComp,
-                    quickSortVerComp,
-                    shakerSortVerComp,
-                    shellSortVerComp,
-                    radixSortVerComp,
-                    countingSortVerComp,
-                    flashSortVerComp,
-                };
-            sortWithTime timeFunctions[] =
-                {
-                    selectionSortVerTime,
-                    insertionSortVerTime,
-                    bubbleSortVerTime,
-                    heapSortVerTime,
-                    mergeSortVerTime,
-                    quickSortVerTime,
-                    shakerSortVerTime,
-                    shellSortVerTime,
-                    radixSortVerTime,
-                    countingSortVerTime,
-                    flashSortVerTime,
-                };
             // check function
             int index = sortFilter(argv[2]);
-            if (index == -1)
-            {
-                cout << "Error: Unknown sort type!\n";
+            if (!checkError(index, 1))
                 return;
-            }
             // Mode
             if (!strcmp(argv[4], "-both") || !strcmp(argv[4], "-comp"))
                 compFunctions[index](arr, nums, count_compare);
@@ -185,7 +191,7 @@ void command_1(int argc, char **argv)
     return;
 }
 
-void command_2(int argc, char **argv)
+void command_2(int argc, char **argv, sortWithComp compFunctions[], sortWithTime timeFunctions[])
 {
 
     int nums = 0;
@@ -197,98 +203,37 @@ void command_2(int argc, char **argv)
             {
                 cout << "ALGORITHM MODE" << endl;
                 cout << "Algorithm  : ";
-                if (sortFilter(argv[i]) == 0)
-                    cout << "Selection Sort" << endl;
-                else if (sortFilter(argv[i]) == 1)
-                    cout << "Insertion Sort" << endl;
-                else if (sortFilter(argv[i]) == 2)
-                    cout << "Bubble Sort" << endl;
-                else if (sortFilter(argv[i]) == 3)
-                    cout << "Shaker Sort" << endl;
-                else if (sortFilter(argv[i]) == 4)
-                    cout << "Shell Sort" << endl;
-                else if (sortFilter(argv[i]) == 5)
-                    cout << "Heap Sort" << endl;
-                else if (sortFilter(argv[i]) == 6)
-                    cout << "Merge Sort" << endl;
-                else if (sortFilter(argv[i]) == 7)
-                    cout << "Quick Sort" << endl;
-                else if (sortFilter(argv[i]) == 8)
-                    cout << "Counting Sort" << endl;
-                else if (sortFilter(argv[i]) == 9)
-                    cout << "Radix Sort" << endl;
-                else if (sortFilter(argv[i]) == 10)
-                    cout << "Flash Sort" << endl;
-                else
-                    cout << argv[i] << endl;
+                printNameSort(sortFilter(argv[i]));
+                cout << endl;
             }
             if (i == 3)
             {
                 cout << "Input size : " << argv[i] << endl;
                 nums = atoi(argv[i]);
+                if (nums <= 0)
+                {
+                    cout << "Error: input size must be a positive number!";
+                    return;
+                }
             }
             if (i == 4)
             {
-                cout << "Input order: ";
-                if (orderFilter(argv[i]) == 0)
-                    cout << "Randomize" << endl;
-                else if (orderFilter(argv[i]) == 1)
-                    cout << "Sorted" << endl;
-                else if (orderFilter(argv[i]) == 2)
-                    cout << "Reversed" << endl;
-                else if (orderFilter(argv[i]) == 3)
-                    cout << "Nearly Sorted" << endl;
-
+                printTypeOrder(orderFilter(argv[i]));
                 long long count_compare = 0;
                 int *arr = new int[nums];
                 double time_use = 0;
                 int dataType = 0;
 
                 dataType = orderFilter(argv[i]);
-                if (dataType == -1)
-                {
-                    cout << "Error: unknown data type!\n";
+                if (!checkError(dataType, 2))
                     return;
-                }
 
                 GenerateData(arr, nums, dataType);
 
-                // Array of functions
-                sortWithComp compFunctions[] =
-                    {
-                        selectionSortVerComp,
-                        insertionSortVerComp,
-                        bubbleSortVerComp,
-                        heapSortVerComp,
-                        mergeSortVerComp,
-                        quickSortVerComp,
-                        shakerSortVerComp,
-                        shellSortVerComp,
-                        radixSortVerComp,
-                        countingSortVerComp,
-                        flashSortVerComp,
-                    };
-                sortWithTime timeFunctions[] =
-                    {
-                        selectionSortVerTime,
-                        insertionSortVerTime,
-                        bubbleSortVerTime,
-                        heapSortVerTime,
-                        mergeSortVerTime,
-                        quickSortVerTime,
-                        shakerSortVerTime,
-                        shellSortVerTime,
-                        radixSortVerTime,
-                        countingSortVerTime,
-                        flashSortVerTime,
-                    };
                 // check function
                 int index = sortFilter(argv[2]);
-                if (index == -1)
-                {
-                    cout << "Error: Unknown sort type!\n";
+                if (!checkError(index, 1))
                     return;
-                }
                 // Mode
                 if (!strcmp(argv[5], "-both") || !strcmp(argv[5], "-comp"))
                     compFunctions[index](arr, nums, count_compare);
@@ -334,7 +279,7 @@ void command_2(int argc, char **argv)
     return;
 }
 
-void command_3(int argc, char **argv)
+void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime timeFunctions[])
 {
     int nums = 0;
     if (!strcmp(argv[1], "-a"))
@@ -345,35 +290,19 @@ void command_3(int argc, char **argv)
             {
                 cout << "ALGORITHM MODE" << endl;
                 cout << "Algorithm : ";
-                if (sortFilter(argv[i]) == 0)
-                    cout << "Selection Sort" << endl;
-                else if (sortFilter(argv[i]) == 1)
-                    cout << "Insertion Sort" << endl;
-                else if (sortFilter(argv[i]) == 2)
-                    cout << "Bubble Sort" << endl;
-                else if (sortFilter(argv[i]) == 3)
-                    cout << "Shaker Sort" << endl;
-                else if (sortFilter(argv[i]) == 4)
-                    cout << "Shell Sort" << endl;
-                else if (sortFilter(argv[i]) == 5)
-                    cout << "Heap Sort" << endl;
-                else if (sortFilter(argv[i]) == 6)
-                    cout << "Merge Sort" << endl;
-                else if (sortFilter(argv[i]) == 7)
-                    cout << "Quick Sort" << endl;
-                else if (sortFilter(argv[i]) == 8)
-                    cout << "Counting Sort" << endl;
-                else if (sortFilter(argv[i]) == 9)
-                    cout << "Radix Sort" << endl;
-                else if (sortFilter(argv[i]) == 10)
-                    cout << "Flash Sort" << endl;
-                else
-                    cout << argv[i] << endl;
+                printNameSort(sortFilter(argv[i]));
+                cout << endl;
             }
             if (i == 3)
             {
                 cout << "Input size: " << argv[i] << endl;
                 nums = atoi(argv[i]);
+                if (nums <= 0)
+                {
+                    cout << "Error: input size must be a positive number!";
+                    return;
+                }
+
             }
             if (i == 4)
             {
@@ -386,41 +315,8 @@ void command_3(int argc, char **argv)
                 int dataType;
                 int index = sortFilter(argv[2]);
 
-                if (index == -1)
-                {
-                    cout << "Error: Unknown data type!" << endl;
+                if (!checkError(index, 2))
                     return;
-                }
-
-                // Array of functions
-                sortWithComp compFunctions[] =
-                    {
-                        selectionSortVerComp,
-                        insertionSortVerComp,
-                        bubbleSortVerComp,
-                        heapSortVerComp,
-                        mergeSortVerComp,
-                        quickSortVerComp,
-                        shakerSortVerComp,
-                        shellSortVerComp,
-                        radixSortVerComp,
-                        countingSortVerComp,
-                        flashSortVerComp,
-                    };
-                sortWithTime timeFunctions[] =
-                    {
-                        selectionSortVerTime,
-                        insertionSortVerTime,
-                        bubbleSortVerTime,
-                        heapSortVerTime,
-                        mergeSortVerTime,
-                        quickSortVerTime,
-                        shakerSortVerTime,
-                        shellSortVerTime,
-                        radixSortVerTime,
-                        countingSortVerTime,
-                        flashSortVerTime,
-                    };
 
                 cout << "\nInput order: Randomize" << endl;
                 cout << "---------------------------" << endl;
@@ -562,101 +458,35 @@ void command_3(int argc, char **argv)
     return;
 }
 
-void command_4(int argc, char **argv)
+void command_4(int argc, char **argv, sortWithComp compFunctions[], sortWithTime timeFunctions[])
 {
     int n;
     ifstream fin(argv[4]);
     if (!fin)
         return;
     fin >> n;
+    if (n <= 0)
+    {
+        cout << "Error: input size must be a positive number!";
+        fin.close();
+        return;
+    }
     int *a = new int[n];
     for (int i = 0; i < n; i++)
         fin >> a[i];
     fin.close();
     int *b = new int[n];
     cpyArr(b, a, n);
+    cout << "COMPARE MODE\n";
     cout << "Algorithm: ";
-    if (sortFilter(argv[2]) == 0)
-        cout << "Selection Sort";
-    else if (sortFilter(argv[2]) == 1)
-        cout << "Insertion Sort";
-    else if (sortFilter(argv[2]) == 2)
-        cout << "Bubble Sort";
-    else if (sortFilter(argv[2]) == 3)
-        cout << "Shaker Sort";
-    else if (sortFilter(argv[2]) == 4)
-        cout << "Shell Sort";
-    else if (sortFilter(argv[2]) == 5)
-        cout << "Heap Sort";
-    else if (sortFilter(argv[2]) == 6)
-    cout << "Merge Sort";
-    else if (sortFilter(argv[2]) == 7)
-    cout << "Quick Sort";
-    else if (sortFilter(argv[2]) == 8)
-        cout << "Counting Sort";
-    else if (sortFilter(argv[2]) == 9)
-        cout << "Radix Sort";
-    else if (sortFilter(argv[2]) == 10)
-        cout << "Flash Sort";
-    else
-        cout << argv[2];
+    printNameSort(sortFilter(argv[2]));
     cout << " | ";
-    if (sortFilter(argv[3]) == 0)
-        cout << "Selection Sort" << endl;
-    else if (sortFilter(argv[3]) == 1)
-        cout << "Insertion Sort" << endl;
-    else if (sortFilter(argv[3]) == 2)
-        cout << "Bubble Sort" << endl;
-    else if (sortFilter(argv[3]) == 3)
-        cout << "Shaker Sort" << endl;
-    else if (sortFilter(argv[3]) == 4)
-        cout << "Shell Sort";
-    else if (sortFilter(argv[3]) == 5)
-        cout << "Heap Sort" << endl;
-    else if (sortFilter(argv[3]) == 6)
-    cout << "Merge Sort" << endl;
-    else if (sortFilter(argv[3]) == 7)
-    cout << "Quick Sort" << endl;
-    else if (sortFilter(argv[3]) == 8)
-        cout << "Counting Sort" << endl;
-    else if (sortFilter(argv[3]) == 9)
-        cout << "Radix Sort" << endl;
-    else if (sortFilter(argv[3]) == 10)
-        cout << "Flash Sort" << endl;
-    else
-        cout << argv[3] << endl;
-
+    printNameSort(sortFilter(argv[3]));
+    cout << endl;
     cout << "Input file: " << argv[4] << endl;
     cout << "Input size: " << n << endl;
     cout << "---------------------------" << endl;
-    sortWithComp compFunctions[] =
-        {
-            selectionSortVerComp,
-            insertionSortVerComp,
-            bubbleSortVerComp,
-            heapSortVerComp,
-            mergeSortVerComp,
-            quickSortVerComp,
-            shakerSortVerComp,
-            shellSortVerComp,
-            radixSortVerComp,
-            countingSortVerComp,
-            flashSortVerComp,
-        };
-    sortWithTime timeFunctions[] =
-        {
-            selectionSortVerTime,
-            insertionSortVerTime,
-            bubbleSortVerTime,
-            heapSortVerTime,
-            mergeSortVerTime,
-            quickSortVerTime,
-            shakerSortVerTime,
-            shellSortVerTime,
-            radixSortVerTime,
-            countingSortVerTime,
-            flashSortVerTime,
-        };
+
     // check function
     long long count_compare1 = 0, count_compare2 = 0;
     double time_use1 = 0, time_use2 = 0;
@@ -679,105 +509,31 @@ void command_4(int argc, char **argv)
     delete[] b;
 }
 
-void command_5(int argc, char **argv)
+void command_5(int argc, char **argv, sortWithComp compFunctions[], sortWithTime timeFunctions[])
 {
+    if (!checkError(sortFilter(argv[2]), 1) || !checkError(sortFilter(argv[3]), 1) || !checkError(orderFilter(argv[5]), 2))
+        return;
     int n;
     n = atoi(argv[4]);
+    if (n <= 0)
+    {
+        cout << "Error: input size must be a positive number!";
+        return;
+    }
     int *a = new int[n];
     GenerateData(a, n, orderFilter(argv[5]));
     int *b = new int[n];
     cpyArr(b, a, n);
+    cout << "COMPARE MODE\n";
     cout << "Algorithm: ";
-    if (sortFilter(argv[2]) == 0)
-        cout << "Selection Sort";
-    else if (sortFilter(argv[2]) == 1)
-        cout << "Insertion Sort";
-    else if (sortFilter(argv[2]) == 2)
-        cout << "Bubble Sort";
-    else if (sortFilter(argv[2]) == 3)
-        cout << "Shaker Sort";
-    else if (sortFilter(argv[2]) == 4)
-        cout << "Shell Sort";
-    else if (sortFilter(argv[2]) == 5)
-        cout << "Heap Sort";
-    else if (sortFilter(argv[2]) == 6)
-    cout << "Merge Sort";
-    else if (sortFilter(argv[2]) == 7)
-    cout << "Quick Sort";
-    else if (sortFilter(argv[2]) == 8)
-        cout << "Counting Sort";
-    else if (sortFilter(argv[2]) == 9)
-        cout << "Radix Sort";
-    else if (sortFilter(argv[2]) == 10)
-        cout << "Flash Sort";
-    else
-        cout << argv[2];
+    printNameSort(sortFilter(argv[2]));
     cout << " | ";
-    if (sortFilter(argv[3]) == 0)
-        cout << "Selection Sort" << endl;
-    else if (sortFilter(argv[3]) == 1)
-        cout << "Insertion Sort" << endl;
-    else if (sortFilter(argv[3]) == 2)
-        cout << "Bubble Sort" << endl;
-    else if (sortFilter(argv[3]) == 3)
-        cout << "Shaker Sort" << endl;
-    else if (sortFilter(argv[3]) == 4)
-        cout << "Shell Sort";
-    else if (sortFilter(argv[3]) == 5)
-        cout << "Heap Sort" << endl;
-    else if (sortFilter(argv[3]) == 6)
-    cout << "Merge Sort" << endl;
-    else if (sortFilter(argv[3]) == 7)
-    cout << "Quick Sort" << endl;
-    else if (sortFilter(argv[3]) == 8)
-        cout << "Counting Sort" << endl;
-    else if (sortFilter(argv[3]) == 9)
-        cout << "Radix Sort" << endl;
-    else if (sortFilter(argv[3]) == 10)
-        cout << "Flash Sort" << endl;
-    else
-        cout << argv[3] << endl;
-
-    cout << "Input size: " << argv[4] << endl;
-    cout << "Input order: ";
-    if (orderFilter(argv[5]) == 0)
-        cout << "Randomize" << endl;
-    else if (orderFilter(argv[5]) == 1)
-        cout << "Sorted" << endl;
-    else if (orderFilter(argv[5]) == 2)
-        cout << "Reversed" << endl;
-    else if (orderFilter(argv[5]) == 3)
-        cout << "Nearly Sorted" << endl;
+    printNameSort(sortFilter(argv[3]));
+    cout << endl;
+    cout << "Input size: " << n << endl;
+    printTypeOrder(orderFilter(argv[5]));
     cout << "---------------------------" << endl;
-    sortWithComp compFunctions[] =
-        {
-            selectionSortVerComp,
-            insertionSortVerComp,
-            bubbleSortVerComp,
-            heapSortVerComp,
-            mergeSortVerComp,
-            quickSortVerComp,
-            shakerSortVerComp,
-            shellSortVerComp,
-            radixSortVerComp,
-            countingSortVerComp,
-            flashSortVerComp,
-        };
-    sortWithTime timeFunctions[] =
-        {
-            selectionSortVerTime,
-            insertionSortVerTime,
-            bubbleSortVerTime,
-            heapSortVerTime,
-            mergeSortVerTime,
-            quickSortVerTime,
-            shakerSortVerTime,
-            shellSortVerTime,
-            radixSortVerTime,
-            countingSortVerTime,
-            flashSortVerTime,
-        };
-    // check function
+
     long long count_compare1 = 0, count_compare2 = 0;
     double time_use1 = 0, time_use2 = 0;
     int index1 = sortFilter(argv[2]);
@@ -813,25 +569,51 @@ void command_5(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
+    sortWithComp compFunctions[] =
+        {
+            selectionSortVerComp,
+            insertionSortVerComp,
+            bubbleSortVerComp,
+            heapSortVerComp,
+            mergeSortVerComp,
+            quickSortVerComp,
+            shakerSortVerComp,
+            shellSortVerComp,
+            radixSortVerComp,
+            countingSortVerComp,
+            flashSortVerComp,
+        };
+    sortWithTime timeFunctions[] =
+        {
+            selectionSortVerTime,
+            insertionSortVerTime,
+            bubbleSortVerTime,
+            heapSortVerTime,
+            mergeSortVerTime,
+            quickSortVerTime,
+            shakerSortVerTime,
+            shellSortVerTime,
+            radixSortVerTime,
+            countingSortVerTime,
+            flashSortVerTime,
+        };
     if (strcmp(argv[1], "-a") == 0)
     {
         if (strcmp(argv[4], "-both") == 0 || strcmp(argv[4], "-time") == 0 || strcmp(argv[4], "-time") == 0)
-            command_1(argc, argv);
-        else if ((strcmp(argv[4], "-rand") == 0 ) || (strcmp(argv[4], "-rev") == 0) || (strcmp(argv[4], "-nsorted") == 0) || (strcmp(argv[4], "-sorted") == 0))
-            command_2(argc, argv);
+            command_1(argc, argv, compFunctions, timeFunctions);
+        else if ((strcmp(argv[4], "-rand") == 0) || (strcmp(argv[4], "-rev") == 0) || (strcmp(argv[4], "-nsorted") == 0) || (strcmp(argv[4], "-sorted") == 0))
+            command_2(argc, argv, compFunctions, timeFunctions);
         else if (atoi(argv[3]) > 0)
-            command_3(argc, argv);
+            command_3(argc, argv, compFunctions, timeFunctions);
         else
             cout << "Wrong input!" << endl;
-
     }
     else if (strcmp(argv[1], "-c") == 0)
     {
-        cout << "COMPARE MODE\n";
         if (argc == 5)
-            command_4(argc, argv);
+            command_4(argc, argv, compFunctions, timeFunctions);
         else if (argc == 6)
-            command_5(argc, argv);
+            command_5(argc, argv, compFunctions, timeFunctions);
         else
             cout << "Wrong input!" << endl;
     }
