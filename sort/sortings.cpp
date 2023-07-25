@@ -1,5 +1,8 @@
 #include "header.h"
 
+typedef chrono::milliseconds MSEC;
+typedef chrono::high_resolution_clock HRC;
+
 // ----------------------------------------------------------------
 // TÔ QUỐC THANH_22127388: Selection Sort && Insertion Sort && Bubble Sort
 // Selection Sort: Counting the number of comparisons
@@ -18,8 +21,8 @@ void selectionSortVerComp(int arr[], int n, long long &count_compare)
 // Selection Sort: Calculating the time of algorithm
 void selectionSortVerTime(int arr[], int n, double &time_use)
 {
-	clock_t start, end;
-	start = double(clock());
+	auto start = HRC::now();
+
 	for (int i = 0; i < n - 1; i++)
 	{
 		int idx = i;
@@ -28,8 +31,9 @@ void selectionSortVerTime(int arr[], int n, double &time_use)
 				idx = j;
 		swap(arr[i], arr[idx]);
 	}
-	end = double(clock());
-	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 
 // Insertion Sort: Counting the number of comparisons
@@ -51,8 +55,8 @@ void insertionSortVerComp(int arr[], int n, long long &count_compare)
 // Insertion Sort: Calculating the time of algorithm
 void insertionSortVerTime(int arr[], int n, double &time_use)
 {
-	clock_t start, end;
-	start = double(clock());
+	auto start = HRC::now();
+
 	for (int i = 1; i < n; i++)
 	{
 		int val = arr[i];
@@ -64,8 +68,9 @@ void insertionSortVerTime(int arr[], int n, double &time_use)
 		}
 		arr[j + 1] = val;
 	}
-	end = double(clock());
-	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 
 // Bubble Sort: Counting thr number of comparisons
@@ -80,14 +85,15 @@ void bubbleSortVerComp(int arr[], int n, long long &count_compare)
 // Bubble Sort: Calculating the time of algorithm
 void bubbleSortVerTime(int arr[], int n, double &time_use)
 {
-	clock_t start, end;
-	start = double(clock());
+	auto start = HRC::now();
+
 	for (int i = 1; i < n; i++)
 		for (int j = n - 1; j >= i; j--)
 			if (arr[j] < arr[j - 1])
 				swap(arr[j], arr[j - 1]);
-	end = double(clock());
-	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 
 // ----------------------------------------------------------------
@@ -153,8 +159,8 @@ void heapRebuildVerTime(int start, int arr[], int n)
 
 void heapSortVerTime(int arr[], int n, double &time_use)
 {
-	clock_t start, end;
-	start = double(clock());
+	auto start = HRC::now();
+
 
 	// Build initial heap
 	for (int index = (n - 1) / 2; index >= 0; index--)
@@ -168,8 +174,9 @@ void heapSortVerTime(int arr[], int n, double &time_use)
 		swap(arr[0], arr[heapSize]);
 	}
 
-	end = double(clock());
-	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 
 // Merge Sort: Counting the number of comparisons
@@ -253,13 +260,14 @@ void mergeSortDoVerTime(int arr[], int first, int last)
 
 void mergeSortVerTime(int arr[], int n, double &time)
 {
-	clock_t start, end;
-	start = double(clock());
+	auto start = HRC::now();
+
 
 	mergeSortDoVerTime(arr, 0, n - 1);
 
-	end = double(clock());
-	time = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time = elapsed.count();
 }
 
 // Quick Sort: Counting the number of comparisons
@@ -317,13 +325,14 @@ void quickSortDoVerTime(int arr[], int first, int last)
 
 void quickSortVerTime(int arr[], int n, double &time)
 {
-	clock_t start, end;
-	start = double(clock());
+	auto start = HRC::now();
+
 
 	quickSortDoVerTime(arr, 0, n - 1);
 
-	end = double(clock());
-	time = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 
 // ----------------------------------------------------------------
@@ -376,8 +385,8 @@ void radixSortVerComp(int arr[], int n, long long &count_compare)
 // Radix Sort: Calculating the time of algorithm
 void radixSortVerTime(int arr[], int n, double &time_use)
 {
-	clock_t start, end;
-	start = clock();
+	auto start = HRC::now();
+
 
 	// find max value of the array
 	int maxValue = -1;
@@ -421,8 +430,9 @@ void radixSortVerTime(int arr[], int n, double &time_use)
 			for (int k = 0; k < tempCount[j]; ++k)
 				arr[idx++] = tempArr[j][k];
 	}
-	end = clock();
-	time_use = (double)(end - start) / CLOCKS_PER_SEC;
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 
 // Shaker Sort: Counting the number of comparisons
@@ -459,8 +469,8 @@ void shakerSortVerComp(int arr[], int n, long long &count_compare)
 // Shaker Sort: Calculating the time of algorithm
 void shakerSortVerTime(int arr[], int n, double &time_use)
 {
-	clock_t start, end;
-	start = clock();
+	auto start = HRC::now();
+
 	int left = 1, right = n - 1, k = n - 1;
 	do
 	{
@@ -485,8 +495,9 @@ void shakerSortVerTime(int arr[], int n, double &time_use)
 		}
 		right = k - 1;		 // because elements from "k" to the end of the array were sorted so we need to sort from the "k - 1" to the beginning of the array.
 	} while (left <= right); // continue iterating until the left equals to the right.
-	end = clock();
-	time_use = (double)(end - start) / CLOCKS_PER_SEC;
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 
 // Shell Sort: Counting the number of comparisons
@@ -519,8 +530,8 @@ void shellSortVerComp(int arr[], int n, long long &count_compare)
 // Shell Sort: Calculating the time of algorithm
 void shellSortVerTime(int arr[], int n, double &time_use)
 {
-	clock_t start, end;
-	start = clock();
+	auto start = HRC::now();
+
 	int gap, i, j, temp;
 	// Start with a big gap, then reduce the gap
 	for (gap = n / 2; gap > 0; gap /= 2)
@@ -543,8 +554,9 @@ void shellSortVerTime(int arr[], int n, double &time_use)
 			arr[j] = temp;
 		}
 	}
-	end = clock();
-	time_use = (double)(end - start) / CLOCKS_PER_SEC;
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 
 // ----------------------------------------------------------------
@@ -583,8 +595,8 @@ void countingSortVerComp(int arr[], int n, long long &count_compare)
 // Counting Sort: Calculating the time of algorithm
 void countingSortVerTime(int arr[], int n, double &time_use)
 {
-	clock_t start, end;
-	start = double(clock());
+	auto start = HRC::now();
+
 
 	// find the max value of the array
 	int MAX = arr[0];
@@ -611,8 +623,9 @@ void countingSortVerTime(int arr[], int n, double &time_use)
 	for (int i = 0; i < n; i++)
 		arr[i] = b[i];
 
-	end = double(clock());
-	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 
 // Flash Sort: Counting the number of comparisons
@@ -678,8 +691,8 @@ void flashSortVerComp(int arr[], int n, long long &count_compare)
 // Flash Sort: Calculating the time of algorithm
 void flashSortVerTime(int arr[], int n, double &time_use)
 {
-	clock_t start, end;
-	start = double(clock());
+	auto start = HRC::now();
+
 	int MAX = 0;
 	int MIN = arr[0];
 
@@ -735,7 +748,8 @@ void flashSortVerTime(int arr[], int n, double &time_use)
 		arr[j + 1] = key;
 	}
 
-	end = double(clock());
-	time_use = (double(end) - double(start)) / double(CLOCKS_PER_SEC);
+	auto end = HRC::now();
+	std::chrono::duration<double> elapsed = end - start;
+	time_use = elapsed.count();
 }
 //----------------------------------------------------------------
