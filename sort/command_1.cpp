@@ -1,5 +1,4 @@
-#include "s/sorts.cpp"
-#include "DataGenerator.cpp"
+#include "sortings.cpp"
 
 typedef void (*sortWithComp) (int arr[], int n, long long &count_compare);
 typedef void (*sortWithTime) (int arr[], int n, double &time_use);
@@ -33,13 +32,39 @@ int sortFilter(char* name)
 
 int main(int argc, char **argv)
 {
-	cout << "ALGORITHM MODE" << endl;
 	int nums = 0;
 	int* arr = NULL;
 	for (int i = 2; i < argc; i++)
 	{
 		if (i == 2)
-			cout << "Algorithm: " << argv[i] << endl;
+		{
+			cout << "ALGORITHM MODE: " << endl;
+			cout << "Algorithm : ";
+			if (sortFilter(argv[i]) == 0)
+				cout << "Selection Sort" << endl;
+			else if (sortFilter(argv[i]) == 1)
+				cout << "Insertion Sort" << endl;
+			else if (sortFilter(argv[i]) == 2)
+				cout << "Bubble Sort" << endl;
+			else if (sortFilter(argv[i]) == 3)
+				cout << "Shaker Sort" << endl;
+			else if (sortFilter(argv[i]) == 4)
+				cout << "Shell Sort" << endl;
+			else if (sortFilter(argv[i]) == 5)
+				cout << "Heap Sort" << endl;
+			else if (sortFilter(argv[i]) == 6)
+				cout << "Merge Sort" << endl;
+			else if (sortFilter(argv[i]) == 7)
+				cout << "Quick Sort" << endl;
+			else if (sortFilter(argv[i]) == 8)
+				cout << "Counting Sort" << endl;
+			else if (sortFilter(argv[i]) == 9)
+				cout << "Radix Sort" << endl;
+			else if (sortFilter(argv[i]) == 10)
+				cout << "Flash Sort" << endl;
+			else
+				cout << argv[i] << endl;
+		}
 		if (i == 3)
 		{
 			cout << "Input file: " << argv[i] << endl;
@@ -53,15 +78,6 @@ int main(int argc, char **argv)
 			{
 				ifs >> nums;
 				arr = new int[nums];
-				// int dataType;
-				// cout << "Nhap dataType (0: random, 1: sorted, 2: reverse, 3: nearly sorted): ";
-				// cin >> dataType;
-				// if (dataType < 0 || dataType > 3)
-				// {
-				// 	cout << "Error: unknown data type!\n";
-				// 	return 0;
-				// }
-				// GenerateData(arr, nums, dataType);
 				int index = 0;
 				while (!ifs.eof())
 					ifs >> arr[index++];
@@ -76,17 +92,31 @@ int main(int argc, char **argv)
 			// Array of functions
 			sortWithComp compFunctions[] = 
 			{
-				// selectionSort,
-				shakerSort,
-				shellSort,
-				radixSort,
+				selectionSortVerComp,
+				insertionSortVerComp,
+				bubbleSortVerComp,
+				heapSortVerComp,
+				mergeSortVerComp,
+				quickSortVerComp,
+				shakerSortVerComp,
+				shellSortVerComp,
+				radixSortVerComp,
+				countingSortVerComp,
+				flashSortVerComp,
 			};
 			sortWithTime timeFunctions[] =
 			{
-				// selectionSort_noComp,
-				shakerSort_noComp,
-				shellSort_noComp,
-				radixSort_noComp,
+				selectionSortVerTime,
+				insertionSortVerTime,
+				bubbleSortVerTime,
+				heapSortVerTime,
+				mergeSortVerTime,
+				quickSortVerTime,
+				shakerSortVerTime,
+				shellSortVerTime,
+				radixSortVerTime,
+				countingSortVerTime,
+				flashSortVerTime,
 			};
 			// check function
 			int index = sortFilter(argv[2]);
@@ -103,14 +133,20 @@ int main(int argc, char **argv)
 
 			if (!strcmp(argv[4], "-both"))
 			{
-				cout << "Comparisons: " << count_compare << endl;
-				cout << "Running time: " << time_use << " milliseconds" << endl;
+				cout << "---------------------------" << endl;
+				cout << "Running time (if required): " << time_use << " (ms)" << endl;
+				cout << "Comparisons  (if required): " << count_compare << endl;
 			}
 			else if (!strcmp(argv[4], "-comp"))
-				cout << "Comparisons: " << count_compare << endl;
+			{
+				cout << "---------------------------" << endl;
+				cout << "Comparisons  (if required): " << count_compare << endl;
+			}
 			else if (!strcmp(argv[4], "-time"))
-				cout << "Running time: " << time_use << " milliseconds" << endl;
-
+			{
+				cout << "---------------------------" << endl;
+				cout << "Running time (if required): " << time_use << " (ms)" << endl;
+			}
 			// Write file to "output.txt"
 			ofstream out("output.txt");
 			if (out.fail())
@@ -129,4 +165,3 @@ int main(int argc, char **argv)
 	}
 	return 0;
 }
-// command_1.exe -a radix-sort input.txt -both
