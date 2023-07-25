@@ -105,7 +105,7 @@ bool checkError(int index, int type)
 
 bool isNum(char s[])
 {
-    for (int i = 0; i < strlen(s); i++)
+    for (int i = 0; i < (int)strlen(s); i++)
         if (s[i] < '0' || s[i] > '9')
             return false;
     return true;
@@ -480,7 +480,7 @@ void command_3(int argc, char **argv, sortWithComp compFunctions[], sortWithTime
     return;
 }
 
-void command_4(int argc, char **argv, sortWithComp compFunctions[], sortWithTime timeFunctions[])
+/*void command_4(int argc, char **argv, sortWithComp compFunctions[], sortWithTime timeFunctions[])
 {
     int n;
     ifstream fin(argv[4]);
@@ -648,4 +648,4 @@ int main(int argc, char **argv)
     }
 
     return 0;
-}
+}*/

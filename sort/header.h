@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MY_LAB_03
 #define MY_LAB_03
 
