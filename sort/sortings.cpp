@@ -221,7 +221,7 @@ void mergeSortRebuildVerTime(int arr[], int first, int mid, int last)
 	int first2 = mid + 1, last2 = last; // The second subarray
 	// Copy the smaller element into the temp array
 	//int tempArr[500000]; // Temporary array
-	int *tempArr = new int [500000];
+	int *tempArr = new int [500000]; 
 	int index = first1;	 // Next available location in tempArr
 	while ((first1 <= last1) && (first2 <= last2))
 	{
